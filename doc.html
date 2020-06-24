@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Services</title>
+</head>
+<body>
+    <header>
+        <h1 class="title">DIFERENTELE SI ASEMANARILE DINTRE SOAP, REST SI GRAPHQL</h1><br>
+    </header>
+    <div role="contentinfo" style="font-size:1vw">
+        <section typeof="sa:AuthorList">
+            <h2>Autori</h2>
+            <ul>
+                <li typeof="sa:ContributorRole" property="schema:author">
+                    <span typeof="schema:Person">
+                        <meta property="schema:givenName" content="Mihaela-Diana">
+                        <meta property="schema:additionalName" content="C.">
+                        <meta property="schema:familyName" content="Pascariu">
+                        <span property="schema:name">Mihaela-Diana Pascariu</span>
+                    </span>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <section>
+        <h1>Cuprins</h1>
+        <div role="contentinfo">
+            <ol role="directory">
+                <li class="no-number"><a href="#introduction"><span>1. </span>Web Services</a>
+                </li>
+                <li class="no-number"><a href="#soa"><span>2. </span>SOA</a>
+                    <ol role="directory">
+                        <li class="no-number"><a href="#soa-orchestrare"><span>2.1. </span> Orchestrare</a></li>
+                        <li class="no-number"><a href="#soa-coregrafie"><span>2.2. </span> Coregrafie </a></li>
+                        <li class="no-number"><a href="#soa-invocare"><span>2.3. </span> Invocare </a></li>
+                    </ol>
+                </li>
+                <li class="no-number"><a href="#soap"><span>3. </span>SOAP</a>
+                </li>
+                <li><a href="#rest"><span>4. </span>REST</a>
+                    <ol role="directory">
+                        <li class="no-number"><a href="#rest-verbs"><span>4.1. </span> REST - Verbe </a></li>
+                        <li class="no-number"><a href="#rest-get"><span>4.2. </span> GET </a></li>
+                        <li class="no-number"><a href="#rest-head"><span>4.3. </span> HEAD </a></li>
+                        <li class="no-number"><a href="#rest-put-patch"><span>4.4. </span> PUT si PATCH </a></li>
+                        <li class="no-number"><a href="#rest-post"><span>4.5. </span> POST</a></li>
+                        <li class="no-number"><a href="#rest-delete"><span>4.6. </span> DELETE </a></li>
+                        <li class="no-number"><a href="#rest-options"><span>4.7. </span> OPTIONS </a></li>
+                        <li class="no-number"><a href="#rest-tranport"><span>4.8. </span> Transfer de date </a></li>
+                    </ol>
+                </li>
+                <li class="no-number"><a href="#graphql"><span>5. </span>GraphQL</a>
+                </li>
+                <li class="no-number"><a href="#soap-vs-rest"><span>6. </span> SOAP vs REST </a></li>
+                <ol role="directory">
+                    <li class="no-number"><a href="#avantaje-soap"><span>6.1. </span> Avantaje SOAP </a></li>
+                    <li class="no-number"><a href="#avantaje-rest"><span>6.2. </span> Avantaje REST </a></li>
+                    <li class="no-number"><a href="#soap-vs-rest-mobile"><span>6.3. </span> SOAP vs REST Mobile </a></li>
+                    <li class="no-number"><a href="#soap-vs-rest-concluzii"><span>6.4. </span> Concluzii </a></li>
+                </ol>
+                <li class="no-number"><a href="#soap-vs-graphql"><span>7. </span>SOAP vs GraphQL</a></li>
+                <li class="no-number"><a href="#rest-vs-qraphql"><span>8. </span> REST vs GraphQL</a></li>
+                <ol role="directory">
+                    <li class="no-number"><a href="#rest-disadv"><span>8.1. </span> Dezavantaje REST  </a></li>
+                    <li class="no-number"><a href="#rest-graph-sim"><span>8.2. </span> Similaritati si diferente </a></li>
+                    <li class="no-number"><a href="#graphql-adv"><span>8.3. </span> Avantaje GraphQL </a></li>
+                    <li class="no-number"><a href="#graphql-adv"><span>8.4. </span> Concluzii </a></li>
+                </ol>
+                <li class="no-number"><a href="#rest-vs-qraphql-vs-soap"><span>9. </span>SOAP, REST & GraphQL</a></li>
+                <li class="no-number"><a href="#resources"><span>10. </span>References</a></li>
+            </ol>
+        </div>
+    </section>
+    <section id="introduction">
+        <h2><span>1. </span>Web Services</h2>
+        <p>
+            "A Web service is a software system designed to support interoperable machine-to-machine interaction over a network."
+            Serviciile Web sunt accesate standardizat via Web. Acestea fac adresarea de resurse cu URI, transferul de date via HTTP
+            , mesajele adoptand formate de date CSV, JSON, XMl,... . Acestea sunt dezvoltate pe baza platformelor, arhitecturilor,
+            tehnologiilor și limbajelor curente.
+        </p>
+    </section>
+
+    <section id="soa">
+        <h2><span>2. </span>SOA - Service oriented architecture</h2>
+        <p>
+            Arhitectura orientata spre servicii este un stil arhitectural de proiectare si dezvoltare de aplicatii considerate drept servicii
+            care pot fi invocate de alte aplicatii.
+            Resursele sunt disponibile via o suita de servicii independente ale caror implementari nu trebuie sa fie cunoscute (black box).
+            Componentele sistemului în ansamblu au un grad mare de independența (de-coupling).
+            Serviciile trebuie proiectate sa interactioneze fara a exista dependente intre acestea.
+            Serviciile nu vor depinde de starea comunicarii (statelessness). Pentru a efectua o procesare, cantitatea de informatie
+            ce trebuie retinută trebuie sa fie minimala.
+        </p>
+    </section>
+    <section id="soa-orchestrare">
+        <h3><span>2.1 </span>SOA - Orchestrare</h3>
+        <p>
+            Existenta unui serviciu principal (service orchestrator) care coordoneaza invocarea altor servicii si preluarea raspunsurilor oferite de acestea
+            Punctul de vedere este centralizat.
+        </p>
+    </section>
+    <section id="soa-coregrafie">
+        <h3><span>2.2 </span>SOA - Coregrafie</h3>
+        <p>
+            Descrierea globala a serviciilor autonome participante la o activitate, definind maniera de intetrschimb de
+            mesaje, reguli de interactiune si contracte intre doua sau mai multe puncte-terminale.
+            Abordarea este descentralizata.
+        </p>
+    </section>
+    <section id="soa-invocare">
+        <h3><span>2.3 </span>SOA - Invocare</h3>
+        <p>
+            Necesitate - un protocol de comunicare (transport) de date intre platforme/aplicatii eterogene.
+            Protocolul va trebui sa ofere un mecanism de invocare si transmitere a datelor in mod structurat,
+            facilitarea de interactiuni complete intre aplicatii si asigurarea extensibilitatii si a securitatii.
+        </p>
+    </section>
+    <section id="soap">
+        <h2><span>3. </span>SOAP - Simple Object Access Protocol</h2>
+        <p>
+            SOAP este un protocol de comunicatie intre doua masini (client - server) pentru interschimb de date XML.
+            Avantaj: sofisticat si flexibil.
+            Acesta este independent de platforma/limbaj de programare. "Dialogul" dintre aplicatii are loc via mesaje SOAP(documente XML).
+        </p>
+            <img src="soap-envelope.png" alt="soap-anvelope">
+        <p>
+            Poate specifica o cale de la expeditor la destinatar, via un intermediar(proxy) optional (SOAP routing).
+            Anteturile pot fi procesate de intermediari diferiti.
+            Datele XML din corp pot fi transportate indiferent de protocolul folosit(desi, uzual, se folosete HTTP, pot fi adoptate si alte
+            protocale precul SMTP, XMPP).
+            Prin SOAP poate fi specificat un apel de metoda disponibila pe alt calculator (SOAP RPC reprezentation).
+        </p>
+        <img src="soap_messaging_model.png" alt="soap=messaging-model">
+        <p>
+            SOAP este echivalentul unui protocol de mesagerie(serializare). Cererea contine un obicet-cerere serializat iar
+            raspunsul include un obiect-raspuns serializat.
+        </p>
+    </section>
+    <section id="rest">
+        <h2><span>4. </span>REST - Representational State Transfer</h2>
+        <p>
+            REST este un stil arhitectural de dezvoltare a aplicatiilor Web axat asupra reprezentarii datelor. Rezultatul unei
+            procesari conduce la obtinerea unei reprezentari a unei resurse.
+            Resursa Web = utilizator, avand cont in cadrul unui sistem, mesaj al unei persoane, fotografie, flux de stiri,
+            componenta software, set de date ... .
+            Reprezentarea resursei se face pe baza unui format de date, textual sau binar(exemple tipice-formate deschise:
+            HTML, JSON, CSV, PNG, SVG, PDF ..).
+            Formatul reprezentarii e desemnat de tipuri MIME (text/html, text/xml, text/csv, application/json, image/png).
+            Reprezentarile aceleasi resurse- desemnate de un URI uni- pot fi multiple. Fiecare reprezentare a unei resurse are
+            asociat un URL.
+
+        </p>
+        <img src="rest-represenation.jpg" alt="rest-representation">
+    </section>
+    <section id="rest-verbs">
+        <h3><span>4.1. </span>REST - Verbe</h3>
+        <p>
+            Clientii( ex navigatoare Web, roboti, playeri, etc) interactioneaza cu reprezentarile resurselor via verbe.
+            Exemplu : "acceseaza" : GET, "modifica" : POST, "sterge" : DELETE, .. .
+            Aceste verbe (actiuni) sunt stipulate de un protocol, de obicei HTTP.
+        </p>
+    </section>
+    <section id="rest-get">
+        <h3><span>4.2. </span>GET</h3>
+        <p>
+             Acceseaza o reprezentare a unei resurse fara sa modifice starea serverului - safe.
+            Cereri identice vor conduce la oferirea aceluiari raspuns - aceeasi reprezentare (idempotenta).
+        </p>
+    </section>
+    <section id="rest-head">
+        <h3><span>4.3. </span>HEAD</h3>
+        <p>
+            Similara cu GET, dar furnizeaza doar meta-date(nu ofera reprezentarea propriu-zisa).
+            De exemplu, informatii privind ultima actualizare sau lungimea continutului/
+        </p>
+    </section>
+    <section id="rest-put-patch">
+        <h3><span>4.4. </span>PUT si PATCH</h3>
+        <p>
+            Inlocuieste o reprezentare de resursa sau eventual creeaza o resursa la nivel de server Web (al carui URI este deja cunoscut).
+            Uzual, returneaza URI-ul resursei. Nu este considerata safe, insa este idempotenta.
+            In schimb, PATCH permite actualizarea partiala a unei reprezentari a unei resurse(PUT nu ofera o asemenea facilitate).
+            Aceasta metoda nu este safe si nici idempotenta.
+        </p>
+    </section>
+</body>
+<section id="rest-post">
+    <h3><span>4.5. </span>POST</h3>
+    <p>
+        Creeaza o resursa (uzual, subordonata altei resurse). Optional, pot fi realizate si procesari suplimentare. Nu este nici
+        safe, nici idempotenta.
+    </p>
+</section>
+<section id="rest-delete">
+    <h3><span>4.6. </span>DELETE</h3>
+    <p>
+        Sterge o resursa desemnata de un URI. Este idempotenta dar nu este safe.
+    </p>
+</section>
+<section id="rest-options">
+    <h3><span>4.7. </span>OPTIONS</h3>
+    <p>
+        Permite clientului sa determine diverse cerinte privitoare la o resursa (ex: daca o resursa poate fi stearsa) sau
+        facilitatile expuse de un server (de exemplu, suportul oferit de un proxy). Este si safe si idempotenta.
+    </p>
+</section>
+<section id="rest-tranport">
+    <h3><span>4.8. </span>Transfer de date</h3>
+    <p>
+        Orice accesare a unei reprezentari plaseaza aplicatia - ori clientul Web - intr-o stare ce va fi schimbata in urma
+        unui tranfer de date (accesarea altei reprezentari).
+    </p>
+    <img src="restful-web-services-api-architecture.jpg" alt="restful-web-services">
+    <p>
+        Transferul de realizeaza prin protocolul HTTP. Reprezentarea este modelata conform unui format (ex: JSON sau XML) si
+        indicata prin tipuri MIME (media types).
+        Adresabilitatea se rezolva via URI.
+        STATELESS SERVER - Fiecare cerere este considerata independenta, fara a se lua in calcul contextul.
+        CACHING - Reprezentarile de resurse pot fi stocate temporar.
+        LAYERED SYSTEM - Aplicatia Web dezvoltata va fi stratificata.
+    </p>
+</section>
+<section id="graphql">
+<h2><span>5. </span> Graph Query Language</h2>
+<p>
+    <img src="graphql_server_integrating_existing_systems.jpg" alt="graphql-arch">
+    "A query language for APIs and a runtime for fulfilling those queries with your existing data".
+    GraphQL este un limbaj de manipulare a datelor pentru API-uri. Acesta a fost initial folosit la nivel intern de catre
+    compania Facebook in 2012, urmand ca in 2015 sa fie lansat public. Inspirat de JSON.
+     Sunt permise interogari - operatii de citire - si actualizari - operatii de alterare a datelor. Ofera suport pentru a
+    anticipa ce date vor fi introduse + structura acestora.
+    Relatiile dintre diverse (categorii de) resurse se pot specifica via conexiuni. Raspunsul oferit include doar datele ce au fost
+    solicitate (rezulta imbunatatirea performantei la nivel de client).
+    Rezolvarea problemelor vizant over/under fetching (preluarea a mai multor sau prea putine date).
+    In GraphQL, data este expusa ca un graf, definit printr-o schema(baza de date). Fiecare nod al acestui graf reprezinta
+    un obiect si contine un rand. Fiecare rand are un nume si un tip. Muchiile apar atunci cand un rand face referire la alt
+    obiect. Clientii acceseaza serviciul GraphQL print-ul singur endpoint, care este folosit pentru interogari(query).
+    GraphQL funizeaza un domeniu specific limbajului pentru definirea schemelor, incluzand tipurile si interogarile. De exemplu,
+    API-ul GraphQL al GitHub-ului are o schema cu tipuri "Repositories" si "Users", pe langa alte entitati.
+
+    Exemplu :
+    POST
+</p>
+    <img src="post-graph-ql.png" alt="post-graphql">
+    <p>
+        RASPUNS
+    </p>
+    <img src="answer-to-post.png" alt="answer-to-post">
+</section>
+<section id="soap-vs-rest">
+    <h2><span>6. </span>SOAP vs REST</h2>
+    <p>
+        In timp ce SOAP si REST sunt similare privind protocolul HTTP, SOAP este un model mai rigid de trimitere a mesajelor
+        decat REST. Relugile SOAP sunt importante deocarece nu se poate atinge un nivel de standardizare fara ele. REST este in
+        schimb mai flezibil, deocarece stilul sau arhitectural nu are nevoie de procesare.
+        Atat SOAP cat si REST se bazeaza pe reguli bine definite.
+    </p>
+</section>
+<section id="avantaje-soap">
+    <h3><span>6.1. </span>Avantaje SOAP</h3>
+    <p>
+        Din punct de vedere al securitatii, in cazul in care se prefera una mai robusta, suportul
+        SOAP pentru WS-Security poate fi cu adevarat util. Adauga o siguranta suplimentara pentru a pastra datele private si
+        integrale. De asemenea, vine cu un suport pentru a verifica identitatea prin intermediari.
+    </p>
+    <img src="soap-security.png" alt="soap-security">
+    <p>
+        De asemenea, are o modalitati build-in de a compensa cu comunicatiile esuate. REST, pe de alta paste, nu are un
+        sistem de mesagerie incorportat. Daca o comuniare esueaza, clientul trebuie sa o gestioneze prin a o recupera.
+        De asemenea, nu exista un set de reguli pentru REST. Asta inseamna ca ambele aplicatii (atat clientul, cat si serverul),
+        trebuie sa iti inteleaga contentul si contextul.
+        SOAP are urmatoarele avantaje, comparativ cu REST:
+    <ul>
+    <li>Limbaj, platforma si transport independent, in timp ce REST are nevoie de HTTP</li>
+    <li>Functioneaza bine in medii enterprise distribuie (REST foloseste comunicare directa point-to-point)</li>
+    <li>Standardizat</li>
+    <li>Built-in error handler</li>
+    <li>Automatizat atunci cand este folosit cu anumite limbaje</li>
+    <li>In anumite cazuri, proiectoare unor servicii folosind SOAP poate fi mai putin complexa comparativ cu REST.
+    Pentru servciile Web care suporta operatii complexe, folosind SOAP necesita un volum mai mic de cod in aplicatie in layer-ul de
+    tranzatii, securitate, incredere si alte elemente.</li>
+    <li>SOAP este foarte extensibil catre alte protocoale si tehnologii. In adaugirea lui WS-Security, SOAP are
+    suport si pentru WS-Adressing, WS-Coordination, WS-ReliableMessaging si asa mai departe.</li>
+    </ul>
+
+    </p>
+</section>
+<section id="avantaje-rest">
+    <h3><span>6.2. </span>Avantaje REST</h3>
+    <p>
+        REST are urmatoarele avantaje, comparativ cu SOAP:
+    <ul>
+        <li>In mare parte mai usor de folosit si mai flexibil</li>
+        <li>Nu necesita tool-uri scumpe pentru a interactina cu serviciile web.</li>
+        <li>Usor de invatat</li>
+        <li>Eficient(SOAP foloseste XML pentru toate mesajele, REST poate folosi formate mai mici)</li>
+        <li>Rapid</li>
+        <li>Cuplat cu JSON(care de obicei functioneaza mai bine cu datele si ofera o parsare mai rapida
+        a acestora), REST este in general considerat mai usor de lucrat</li>
+        <li>Multumita JSON, REST ofera un suport mai bun pentru clientii browser-ului</li>
+        <li>REST ofera o performanta superioara, in particular prin caching pentru informatia care nu este
+        alterata si nu este nici dinamica.</li>
+        <li>Este folosit petru servicii majore precum Google, Yahoo, Ebay, Amazon etc.</li>
+    </ul>
+    </p>
+    <img src="rest-reusable.png" alt="rest-advantage">
+</section>
+<section id="soap-vs-rest-mobile">
+    <h3><span>6.3. </span>REST vs SOAP pentru aplicatii mobileS</h3>
+    <p>
+        Pentru a testa performanta celor doua protocoale in cadrul aplicatiilor mobile, s-a creat o aplicatie care foloseste
+        o schema HR pentru a returna o lista de departamente, inclunzand o lista de angajati pentru fiecare departament. Deci
+        in total s-au considerat 27 de departamente cu 107 angajati. Fiecare departanent are 4 atribute, fiecare angajat are 11
+        atribute. In format JSON, aceste date ocupa 26.2 KB in timp ce in format XML ocupa 77.3 KB.
+
+    </p>
+    <img src="rest-vs-soap.png" alt="rest-vs-soap">
+</section>
+<section id="soap-vs-rest-concluzii">
+    <h3><span>6.4. </span>Concluzii</h3>
+    <p>
+        In primul rand, raspunsul la intrebarea "REST sau SOAP" are ca raspuns : "DEPINDE". Fiecare protocol are definite niste
+        avantaje si dezavantaje. Alegerea dintre REST si SOAP depinde de limbajul de programare folosit, environment,
+        si de requirements.
+    </p>
+    <img src="rest-vs-soap.png" alt="rest-vs-soap">
+</section>
+<section id="soap-vs-graphql">
+    <h2><span>7. </span>SOAP vs GraphQL</h2>
+    <p>
+        Se poate spune despre GraphQL ca are puterea cat a SOAP si REST combinate. GraphQL si SOAP folosesc amandoua doar
+        un singur endpoint pentru a accesa datele. Ambele formate sunt strongly typed : trebuie sa declaram tipurile de date
+        (Intefer, String, Date, etc.) atunci cand le folosim. Ambele duc lipsa de build-in caching, avand nevoie sa foloseasca
+        alte tool-uri pentru a le augumenta.
+    </p>
+</section>
+
+<section id="rest-vs-qraphql">
+    <h3><span>8. </span>REST vs GraphQL</h3>
+    <p>
+        Cu un REST API, datele vor fi preluate folosind mai multe endpoint-uri. In schimb, in momentul folosirii
+        GraphQL, se trimite pur si simplu o interogare catre server care include cerintele concrete ale datelor. Serverul
+        apoi raspunde cu un obiect JSON unde aceste cerite sunt indeplnite.
+    </p>
+</section>
+<section id="rest-disadv">
+    <h2><span>8.1. </span>Dezavantaje REST-Aparitia GraphQL</h2>
+    <p>
+       In timp ce REST ofera multe avanataje developerilor si a devenit standardul companiilor care face deploy de API,
+        are si dezavantaje. Acestea apar din pricina faptului ca serverul creeaza reprezentarea unei resurse dar si raspunsul
+        clientului care il foloseste.
+        API-urile RESTful intorceau de multe ori mai multe date decat cerea sau avea nevoie clientul. Alternativ, clientul
+        trebuia sa faca mai multe API call-uri pentru a primi datele de care are nevoie. Developerii trebuiau de asemenea sa
+        creeze endpoint-ruile API avand in minte modelul front-end view-ului, iar orice schimbare in fron-end views trebuiau schimbate
+        si in endpoint-urile API.
+        Astfel, s-a ajuns la o flexibilitate redusa.
+    </p>
+        <img src="model-resr.png" alt="rest-model">
+    <p>
+        Astfel, s-a cautat o alternativa a REST-ului. Facebook a venit cu aceasta solutie in 2012, facund-o publica in 2015.
+    </p>
+    <img src="model-graph-ql.png" alt="model-graphql">
+</section>
+<section id="rest-graph-sim">
+    <h2><span>8.2 </span>Similaritati si diferente</h2>
+    <p>
+        Conceptul REST consta in resursa care este identificata ca si URL. Atunci cand un developer vrea sa recupereze
+        o resursa in aplicatia lor, ei trimit un HTTP GET request. Din moment de API-urile folosesc JSON, raspunsul va fi
+        in format JSON.
+        Pana in acest punct, GraphQL si REST sunt similare.
+        Privind in schimb diferentele, atunci cand developerii folosesc REST API-uri in aplicatia lor, ei apeleaza la endpoint-uri.
+        Totusi, diferenta cu GraphQL este ca resursa este preluata. Developerii de GraphQL definesc "tipuri" pentru informatiile
+        pe care vor sa le preia, astfel, creeaza interogari in baza de date specificand ce informatii for sa primeasca.
+        Atunci cand o aplicatie face un REST API call, executia foloseste route handlers, care sunt functii pentru URL-urile
+        specifice. Functioneaza astfel:
+        <ul>
+            <li>Server-ul primeste request-ul si recupereaza path-ul URL si verbul HTTP (ex. GET)</li>
+            <li>Server-ul gaseste verbul care se potriveste si path-ul</li>
+            <li>Server-ul executa functia si produce un rezultat</li>
+            <li>Rezultatul este serializat si se trimite un cod de raspuns si un header catre client</li>
+        </ul>
+        GraphQL foloseste acelasi model in practica, dar totusi, implementarea este diferita.
+        <ul>
+            <li>In timpul unui apel GraphQL API, server-ul primeste un request si recupereaza interogarea.</li>
+            <li>Examineaza interogarea, apoi apeleaza resolver-ul pentru fiecare rand din query.</li>
+            <li>Resolver-ul returneaza un rezultat, ca mai apoi sa fie trimis clientului.</li>
+        </ul>
+    </p>
+    <img src="rest-vs-graph.png" alt="rest-vs-graph">
+</section>
+<section id="graphql-adv">
+    <h3><span>8.3. </span>Avantaje GraphQL</h3>
+    <p>
+        GraphQL foloseste Schema Definition Language (SDL). Schema include toate tipurile folosite in API si defineste modul
+        in care un client ar trebui sa acceseze datele din server.
+        Dupa ce echipa de development defineste o baza de date(schema), atat front-end developerii cat si back-end developerii
+        stiu structura datelor. Aceste echipe pot lucra acum in paralel. Echipa de front-end poate crea daye de test dummy pentru
+        a testa aplicatia lor, astfel incat atunci cand aceasta este finalizata, sa poate fi folosita folosind un API real. Acest lucru
+        ajuta la imbunatatirea productivitatii echipelor.
+
+        Aplicatiile care folosesc REST API-uri primesc intregul set de date intr-un API endpoint, dupa cum am mai explicat.
+        Creatorul aplicatiei nu isi poate forma o viziune privind volumul de folorire a unor anumite date, intr-un cat acestea sunt
+        mereu returnate integral.
+
+        Pe de alta parte, cum GraphQL foloseste interogari si developerii le folosesc pentru a primi anumite date specifice. Acest
+        lucru permite creatorului aplicatiei sa isi formeze o viziuna asupra datelor, care sunt mai cerute, dar mai ales, va stii
+        care date nu sunt cerute sau folosite de catre clienti.
+    </p>
+</section>
+<section id="rest-vs-qraphql-conclusions">
+    <h3><span>8.4. </span>Concluzii</h3>
+    <p>
+        Atat REST cat si GraphQL sunt modele proeminente de a dirija modul in care un API va functiona si in care o
+        aplicatie isi va accesa datele din acesta. In timp ce REST are o munca signifiant mai simplificata pentru developeri
+        prin abordarea sa standardizata, are si dezavantaje. GraphQL, cu interogarile sale, bazele de date si resolver-urile
+        ofera mai multa flexibilitate, si chiar mai mult, o mai buna performanta.
+
+        Totusi, amandoua pot fi implementate intr-un proiect.
+    </p>
+</section>
+<section id="rest-vs-qraphql-vs-soap">
+    <h3><span>9. </span>SOAP, REST & GraphQL</h3>
+    <p>
+        In concluzie, stim ca fiecare protocol a aparut ca si consecinta a celuilalt. Incepand de la SOAP, avand nevoie
+        de un protocol mai flexibil care sa ofere mai multe formate pentru comunicare decat cel de tip XML, a aparut REST
+        care este si cel mai folosit in zilele noastra. De asemenea, pentru o performata mai buna si o eficienta mai sporita,
+        a fost inventat GraphQL-ul.
+        SOAP este cel mai securizat, avand actiuni arbitrare, stucturi de date oricat de complexe(inclusiv de validare),
+        o descriere complexa a serviciului (pe baza WSDL), devoltare sofisticata si de asemenea, fiind specific mediului
+        enterprise.
+        REST consta in actiuni fixe (GET, POST,..), opereaza asupra reprezentarilor de resurse, scalabil, uzual si cu o abordare
+        pragmatica in aplicatiile sociale, fiind bazat pe URI si hipermedia.
+        GraphQL este usor de utilizat si practic, folosindu-se de scheme de baze de date pentru a relationa cu serverul prin
+        intermediul interogarilor.
+    </p>
+</section>
+<section id="resources">
+    <h2><span>10. </span>Resurse</h2>
+    <p>
+        <ul>
+    <li>https://profs.info.uaic.ro/~busaco/teach/courses/web/presentations/web10ServiciiWeb-SOA-SOAP-WSDL-UDDI.pdf</li>
+    <li>https://profs.info.uaic.ro/~busaco/teach/courses/web/presentations/web11ServiciiWeb-REST.pdf</li>
+    <li>https://profs.info.uaic.ro/~busaco/teach/courses/web/presentations/web12ServiciiWeb-API-Microservicii-Serverless.pdf</li>
+    <li>https://en.wikipedia.org/wiki/SOAP</li>
+    <li>https://www.ateam-oracle.com/performance-study-rest-vs-soap-for-mobile-applications</li>
+    <li>https://arxiv.org/pdf/2003.04761.pdf</li>
+    <li>https://www.howtographql.com/basics/1-graphql-is-the-better-rest/</li>
+    <li>https://medium.com/better-practices/rest-soap-graphql-gesundheit-6544053f65cf</li>
+    <li>https://stackify.com/soap-vs-rest/</li>
+    <li>https://en.wikipedia.org/wiki/GraphQL</li>
+</ul>
+    </p>
+</section>
+
+</html>
